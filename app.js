@@ -20,6 +20,7 @@ const startButton = document.querySelector('#start')
 const endButton = document.querySelector('#end')
 const nextButton = document.querySelector('#next')
 const timer = document.querySelector('#timer')
+const usedWordsList = document.querySelector('#used-words')
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
@@ -30,7 +31,6 @@ function init() {
     nextButton.style.display = 'none'
     startButton.style.display = 'block'
     timer.innerText = 'Click start to begin timer'
-    console.log(wordList)
     render()
 }
 init()
@@ -92,7 +92,11 @@ function handleClickStart() {
     removeWordFromList()
 }
 
+function handleClickEnd() {
+    usedWordsList.innerText = usedWords
+}
+
 /*----------------------------- Event Listeners -----------------------------*/
 startButton.addEventListener('click', handleClickStart)
-endButton.addEventListener('click', init)
+endButton.addEventListener('click', handleClickEnd)
 nextButton.addEventListener('click', handleClickNext)
