@@ -11,7 +11,6 @@ const wordList = ['el libro', 'el gato', 'el perro']
 let randomWord
 let usedWords
 let gameOver
-let gameStarted
 let time
 let countdown
 
@@ -26,7 +25,6 @@ const timer = document.querySelector('#timer')
 function init() {
     usedWords = []
     gameOver = false
-    gameStarted = false
     time = 5
     endButton.style.display = 'none'
     nextButton.style.display = 'none'
@@ -42,7 +40,7 @@ function render() {
 }
 
 function generateRandomWord() {
-    if (gameStarted === true) {
+    if (gameOver === false) {
         const randomNum = Math.floor(Math.random() * wordList.length)
         randomWord = wordList[randomNum]
         word.innerText = randomWord
@@ -50,7 +48,12 @@ function generateRandomWord() {
 }
 
 function startTimer() {
+    if (wordList.length === 0) return
+    if (time <= 0) {
+        time = 5
+    }
     timer.innerText = `time remaining: ${time} seconds`
+
     countdown ??= setInterval(() => {
         time -= 1
         timer.innerText = `time remaining: ${time} seconds`
@@ -67,17 +70,29 @@ function endTimer() {
     }
 }
 
-function handleClick() {
-    gameStarted = true
+function handleClickNext() {
+    generateRandomWord()
+    startTimer()
+    removeWordFromList()
+}
+
+function removeWordFromList() {
+    usedWords.push(randomWord)
+    wordList.splice(wordList.indexOf(randomWord), 1)
+    if (wordList.length === 0) gameOver = true
+}
+
+function handleClickStart() {
+    gameOver = false
     startButton.style.display = 'none'
     if (wordList.length === 0) return
 
     startTimer()
     render()
-    usedWords.push(randomWord)
-    wordList.splice(wordList.indexOf(randomWord), 1)
+    removeWordFromList()
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
-startButton.addEventListener('click', handleClick)
+startButton.addEventListener('click', handleClickStart)
 endButton.addEventListener('click', init)
+nextButton.addEventListener('click', handleClickNext)
