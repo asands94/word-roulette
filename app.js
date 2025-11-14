@@ -12,16 +12,20 @@ let randomWord
 let usedWords
 let gameOver
 let gameStarted
+let time
+let countdown
 
 /*------------------------ Cached Element References ------------------------*/
 const word = document.querySelector('#word')
 const startButton = document.querySelector('#start')
+const timer = document.querySelector('#timer')
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
     usedWords = []
     gameOver = false
     gameStarted = false
+    time = 5
     render()
 }
 init()
@@ -38,9 +42,18 @@ function generateRandomWord() {
     }
 }
 
+function startTimer() {
+    countdown ??= setInterval(() => {
+        time -= 1
+        timer.innerText = `time remaining: ${time} seconds`
+    }, 1000)
+}
+
 function handleClick(event) {
     gameStarted = true
     if (wordList.length === 0) return
+
+    startTimer()
     render()
     usedWords.push(randomWord)
     wordList.splice(wordList.indexOf(randomWord), 1)
@@ -48,3 +61,8 @@ function handleClick(event) {
 
 /*----------------------------- Event Listeners -----------------------------*/
 startButton.addEventListener('click', handleClick)
+
+// this code will go somewhere
+//  if (time <= 0) {
+//         clearInterval(countdown)
+//     }
