@@ -18,6 +18,8 @@ let countdown
 /*------------------------ Cached Element References ------------------------*/
 const word = document.querySelector('#word')
 const startButton = document.querySelector('#start')
+const endButton = document.querySelector('#end')
+const nextButton = document.querySelector('#next')
 const timer = document.querySelector('#timer')
 
 /*-------------------------------- Functions --------------------------------*/
@@ -26,6 +28,11 @@ function init() {
     gameOver = false
     gameStarted = false
     time = 5
+    endButton.style.display = 'none'
+    nextButton.style.display = 'none'
+    startButton.style.display = 'block'
+    timer.innerText = 'Click start to begin timer'
+    console.log(wordList)
     render()
 }
 init()
@@ -55,11 +62,14 @@ function endTimer() {
     if (time <= 0) {
         clearInterval(countdown)
         countdown = null
+        endButton.style.display = 'inline-block'
+        nextButton.style.display = 'inline-block'
     }
 }
 
 function handleClick() {
     gameStarted = true
+    startButton.style.display = 'none'
     if (wordList.length === 0) return
 
     startTimer()
@@ -70,3 +80,4 @@ function handleClick() {
 
 /*----------------------------- Event Listeners -----------------------------*/
 startButton.addEventListener('click', handleClick)
+endButton.addEventListener('click', init)
