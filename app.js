@@ -43,10 +43,16 @@ function generateRandomWord() {
 }
 
 function startTimer() {
+    timer.innerText = `time remaining: ${time} seconds`
     countdown ??= setInterval(() => {
         time -= 1
         timer.innerText = `time remaining: ${time} seconds`
     }, 1000)
+}
+
+function endTimer() {
+    clearInterval(countdown)
+    countdown = null
 }
 
 function handleClick(event) {
@@ -61,8 +67,3 @@ function handleClick(event) {
 
 /*----------------------------- Event Listeners -----------------------------*/
 startButton.addEventListener('click', handleClick)
-
-// this code will go somewhere
-//  if (time <= 0) {
-//         clearInterval(countdown)
-//     }
