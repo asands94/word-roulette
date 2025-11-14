@@ -47,15 +47,18 @@ function startTimer() {
     countdown ??= setInterval(() => {
         time -= 1
         timer.innerText = `time remaining: ${time} seconds`
+        endTimer()
     }, 1000)
 }
 
 function endTimer() {
-    clearInterval(countdown)
-    countdown = null
+    if (time <= 0) {
+        clearInterval(countdown)
+        countdown = null
+    }
 }
 
-function handleClick(event) {
+function handleClick() {
     gameStarted = true
     if (wordList.length === 0) return
 
