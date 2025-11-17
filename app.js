@@ -1,9 +1,3 @@
-// user presses start to begin the game
-// a random word from an array of words is shown
-// a timer for 30 seconds starts
-// when the timer ends the user can play again to go to a new rounds or end the game
-// when the user ends the game, they see all the words they went through
-
 /*-------------------------------- Constants --------------------------------*/
 const wordList = ['el libro', 'el gato', 'el perro']
 
@@ -29,8 +23,10 @@ function init() {
     time = 5
     endButton.style.display = 'none'
     nextButton.style.display = 'none'
-    startButton.style.display = 'block'
+    startButton.style.display = 'inline-block'
+    usedWordsList.style.display = 'none'
     timer.innerText = 'Click start to begin timer'
+    console.log(wordList)
     render()
 }
 init()
@@ -65,8 +61,8 @@ function endTimer() {
     if (time <= 0) {
         clearInterval(countdown)
         countdown = null
-        endButton.style.display = 'inline-block'
-        nextButton.style.display = 'inline-block'
+        // endButton.style.display = 'inline-block'
+        // nextButton.style.display = 'inline-block'
     }
 }
 
@@ -84,7 +80,11 @@ function removeWordFromList() {
 
 function handleClickStart() {
     gameOver = false
+    if (startButton.innerText === 'Play Again') {
+        init()
+    }
     startButton.style.display = 'none'
+    endButton.style.display = 'block'
     if (wordList.length === 0) return
 
     startTimer()
@@ -94,6 +94,13 @@ function handleClickStart() {
 
 function handleClickEnd() {
     usedWordsList.innerText = usedWords
+    usedWordsList.style.display = 'block'
+    startButton.innerText = 'Play Again'
+    startButton.style.display = 'block'
+    endButton.style.display = 'none'
+    clearInterval(countdown)
+    countdown = null
+    if (wordList.length === 0) return
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
