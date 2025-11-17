@@ -79,12 +79,12 @@ function removeWordFromList() {
 }
 
 function handleClickStart() {
-    gameOver = false
     if (startButton.innerText === 'Play Again') {
         init()
     }
     startButton.style.display = 'none'
-    endButton.style.display = 'block'
+    endButton.style.display = 'inline-block'
+    nextButton.style.display = 'inline-block'
     if (wordList.length === 0) return
 
     startTimer()
@@ -93,10 +93,10 @@ function handleClickStart() {
 }
 
 function handleClickEnd() {
-    usedWordsList.innerText = usedWords
+    usedWordsList.innerText = `all the words shown: ${usedWords}`
     usedWordsList.style.display = 'block'
     startButton.innerText = 'Play Again'
-    startButton.style.display = 'block'
+    startButton.style.display = 'inline-block'
     endButton.style.display = 'none'
     clearInterval(countdown)
     countdown = null
