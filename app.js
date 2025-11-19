@@ -14,6 +14,8 @@ const newWord = document.querySelector('#start')
 const description = document.querySelector('#description')
 const timer = document.querySelector('#timer')
 const word = document.querySelector('#word')
+const words = document.querySelector('#words p')
+const wordsSection = document.querySelector('#words')
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
@@ -58,6 +60,7 @@ function setTimer() {
         if (timeLeft === 0) {
             timer.innerText = `Time's Up`
             clearInterval(countdown)
+            countdown = null
             startButton.innerText = 'NEW WORD'
             startButton.classList.remove('hidden')
             endButton.classList.remove('hidden')
@@ -71,11 +74,14 @@ startButton.addEventListener('click', () => {
     if (startButton.innerText === 'START') {
         start()
     } else {
-        // reset timer
-        // generate a new random word
-        // show list of previous words used
-        // hide end game button
-        // hide new word/start button
+        if (wordsList.length === 0) return
+        timeLeft = 5
+        setTimer()
+        words.innerText = usedWords
+        wordsSection.classList.remove('hidden')
+        generateRandomWord()
+        startButton.classList.add('hidden')
+        endButton.classList.add('hidden')
     }
 })
 
