@@ -29,6 +29,9 @@ function generateRandomWord() {
     if (wordsList.length === 0) return
     // generate the random word
     randomWord = wordsList[Math.floor(Math.random() * wordsList.length)]
+    // show the word in the browser
+    word.innerText = randomWord
+    word.classList.remove('hidden')
     // push the word into the used words array
     usedWords.push(randomWord)
     // find the index of the random word
