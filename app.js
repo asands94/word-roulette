@@ -49,11 +49,14 @@ function start() {
 
 function setTimer() {
     timer.classList.remove('hidden')
-    timer.innerText = timeLeft
+    timer.innerText = `${timeLeft} seconds left`
     countdown ??= setInterval(() => {
-        if (timeLeft === 0) return
         timeLeft -= 1
-        timer.innerText = timeLeft
+        timer.innerText = `${timeLeft} seconds left`
+        if (timeLeft === 0) {
+            timer.innerText = `Time's Up`
+            clearInterval(countdown)
+        }
     }, 1000)
 }
 
