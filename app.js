@@ -9,6 +9,7 @@ let randomWord
 
 /*------------------------ Cached Element References ------------------------*/
 const startButton = document.querySelector('#start')
+const newWord = document.querySelector('#start')
 const description = document.querySelector('#description')
 const timer = document.querySelector('#timer')
 const word = document.querySelector('#word')
@@ -18,11 +19,10 @@ function init() {
     timeLeft = 5
     wordsList = ['el libro', 'el baño', 'el hombre']
     usedWords = []
-    // reset timer back to 60 secs
-    // show the game description
-    // show the start button
-    // hide the random word
-    // hide the timer
+    startButton.innerText = 'START'
+    description.classList.remove('hidden')
+    word.classList.add('hidden')
+    timer.classList.add('hidden')
 }
 
 function generateRandomWord() {
@@ -56,10 +56,18 @@ function setTimer() {
         if (timeLeft === 0) {
             timer.innerText = `Time's Up`
             clearInterval(countdown)
+            startButton.innerText = 'New Word'
+            startButton.classList.remove('hidden')
         }
     }, 1000)
 }
 
 init()
 /*----------------------------- Event Listeners -----------------------------*/
-startButton.addEventListener('click', start)
+startButton.addEventListener('click', () => {
+    if (startButton.innerText === 'START') {
+        start()
+    } else {
+        init()
+    }
+})
