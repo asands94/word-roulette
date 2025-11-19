@@ -19,7 +19,7 @@ const wordsSection = document.querySelector('#words')
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
-    timeLeft = 5
+    timeLeft = 60
     wordsList = ['el libro', 'el baño', 'el hombre']
     usedWords = []
     startButton.innerText = 'START'
@@ -76,7 +76,7 @@ startButton.addEventListener('click', () => {
         start()
     } else {
         if (wordsList.length === 0) return
-        timeLeft = 5
+        timeLeft = 60
         setTimer()
         words.innerText = usedWords
         wordsSection.classList.remove('hidden')
