@@ -4,6 +4,7 @@ const words = ['el libro', 'el baño', 'el hombre']
 /*---------------------------- Variables (state) ----------------------------*/
 let timeLeft
 let usedWords
+let countdown
 
 /*------------------------ Cached Element References ------------------------*/
 const startButton = document.querySelector('#start')
@@ -12,6 +13,7 @@ const word = document.querySelector('#word')
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
+    timeLeft = 5
     // reset timer back to 60 secs
     // show the game description
     // show the start button
@@ -25,6 +27,7 @@ function generateRandomWord() {
 }
 
 function start() {
+    setTimer()
     // start the timer - 60 seconds
     // show a random word from the words array
     // hide the start button
@@ -32,14 +35,16 @@ function start() {
 }
 
 function setTimer() {
-    // use setinterval for a timer
-    // decrease the timeLeft variable by 1
-    // if timeLeft === 0 stop the timer
+    countdown ??= setInterval(() => {
+        if (timeLeft === 0) return
+        timeLeft -= 1
+        console.log(timeLeft)
+    }, 1000)
 }
 
 function clearTimer() {
     // clear the interval timer
 }
-
+init()
 /*----------------------------- Event Listeners -----------------------------*/
 startButton.addEventListener('click', start)
