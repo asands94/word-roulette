@@ -60,9 +60,6 @@ function setTimer() {
     }, 1000)
 }
 
-function clearTimer() {
-    // clear the interval timer
-}
 init()
 /*----------------------------- Event Listeners -----------------------------*/
 startButton.addEventListener('click', start)
