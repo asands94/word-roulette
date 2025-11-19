@@ -9,6 +9,7 @@ let randomWord
 
 /*------------------------ Cached Element References ------------------------*/
 const startButton = document.querySelector('#start')
+const description = document.querySelector('#description')
 const timer = document.querySelector('#timer')
 const word = document.querySelector('#word')
 
@@ -34,17 +35,13 @@ function generateRandomWord() {
     const indexOfWord = wordsList.indexOf(randomWord)
     // remove the random word from the word list array
     wordsList.splice(indexOfWord, 1)
-    // generate a random word
-    // remove the last shown word from the word array and put it in the used words array
 }
 
 function start() {
     setTimer()
     generateRandomWord()
-    // start the timer - 60 seconds
-    // show a random word from the words array
-    // hide the start button
-    // hide the game description
+    startButton.classList.add('hidden')
+    description.classList.add('hidden')
 }
 
 function setTimer() {
