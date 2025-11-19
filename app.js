@@ -26,8 +26,8 @@ function init() {
     startButton.style.display = 'inline-block'
     usedWordsList.style.display = 'none'
     timer.innerText = 'Click start to begin timer'
-    console.log(wordList)
-    render()
+    // console.log(wordList)
+    // render()
 }
 init()
 
@@ -67,14 +67,17 @@ function endTimer() {
 }
 
 function handleClickNext() {
-    generateRandomWord()
-    startTimer()
+    console.log(wordList, randomWord)
     removeWordFromList()
+    // startTimer()
+    // generateRandomWord()
+    console.log(wordList, randomWord)
 }
 
 function removeWordFromList() {
     usedWords.push(randomWord)
-    wordList.splice(wordList.indexOf(randomWord), 1)
+    console.log(wordList.indexOf(randomWord))
+    // wordList.splice(wordList.indexOf(randomWord), 1)
     if (wordList.length === 0) gameOver = true
 }
 
