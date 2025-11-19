@@ -25,6 +25,7 @@ function init() {
     startButton.innerText = 'START'
     description.classList.remove('hidden')
     word.classList.add('hidden')
+    wordsSection.classList.add('hidden')
     timer.classList.add('hidden')
     endButton.classList.add('hidden')
 }
