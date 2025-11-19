@@ -110,3 +110,4 @@ function handleClickEnd() {
 startButton.addEventListener('click', handleClickStart)
 endButton.addEventListener('click', handleClickEnd)
 nextButton.addEventListener('click', handleClickNext)
+console.log('special feature')
